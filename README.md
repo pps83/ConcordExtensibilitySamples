@@ -1,17 +1,15 @@
-## ConcordExtensibilitySamples
-Visual Studio Debug Engine Extensibility Samples
+## C/C++ Custom Visualizer
+This directory contains an example C/C++ Custom Visualizer.
 
-### What are "Concord Extensibility Samples"?
-[Concord](https://github.com/Microsoft/ConcordExtensibilitySamples/wiki/Overview) is the code name for Visual Studio's new debug engine that first shipped in Visual Studio 2012.  Concord was designed to be extensible and this repo contains samples of these extensions.
+## What is a Custom Visualizer?
+The Visual Studio C/C++ Expression Evaluator allows customization of the display of variables in
+the debugger based on the type of that variable (example: change the way CExampleClass variables
+are displayed) using .natvis files. Natvis files add rules to format a type either declaratively or
+by running custom code in the debugger. This custom code is called a Custom Visualizer. Most of
+the time it is easier and much less error prone to use the declarative approach. But
+Custom Visualizers are useful when formatting a type is too complicated to be done declaratively.
 
-### Getting started
+Natvis documentation can be found on [docs.microsoft.com](https://docs.microsoft.com/en-us/visualstudio/debugger/create-custom-views-of-native-objects).
 
-For Concord documentation, take a look at the wiki:
-* [Overview](https://github.com/Microsoft/ConcordExtensibilitySamples/wiki/Overview)
-* [Architecture](https://github.com/Microsoft/ConcordExtensibilitySamples/wiki/Concord-Architecture)
-
-If you want to dive right into some code for extending the debug engine, take a look at the samples:
-* [Hello World](https://github.com/Microsoft/ConcordExtensibilitySamples/wiki/Hello-World-Sample)
-* [Managed Expression Evaluator](https://github.com/Microsoft/ConcordExtensibilitySamples/wiki/Managed-Expression-Evaluator-Sample)
-
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+## How to use this sample
+More information about this sample can be found in the [Wiki for this project](https://github.com/Microsoft/ConcordExtensibilitySamples/wiki/Cpp-Custom-Visualizer-Sample).
