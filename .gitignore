@@ -6,8 +6,7 @@ obj
 *.sdf
 *.opensdf
 ipch
-debug/
-release/
+msvc.build/
 NuGet/
 TestResults/
 BuildResults.xml
