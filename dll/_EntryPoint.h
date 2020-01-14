@@ -68,9 +68,6 @@ public:
         _In_ Evaluation::DkmVisualizedExpression* pVisualizedExpression,
         _Deref_out_opt_ DkmString** ppStringValue
         );
-
-private:
-    static HRESULT FileTimeToText(const FILETIME& fileTime, CString& text);
 };
 
 OBJECT_ENTRY_AUTO(CBacktestEngineCustomVisualizerService::ClassId, CBacktestEngineCustomVisualizerService)

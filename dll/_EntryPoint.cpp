@@ -5,6 +5,7 @@
 
 #include "stdafx.h"
 #include "_EntryPoint.h"
+#include "../../../src/symbol.h"
 
 HRESULT STDMETHODCALLTYPE CBacktestEngineCustomVisualizerService::EvaluateVisualizedExpression(
     _In_ Evaluation::DkmVisualizedExpression* pVisualizedExpression,
@@ -34,21 +35,16 @@ HRESULT STDMETHODCALLTYPE CBacktestEngineCustomVisualizerService::EvaluateVisual
 
     // Read the FILETIME value from the target process
     DkmProcess* pTargetProcess = pVisualizedExpression->RuntimeInstance()->Process();
-    FILETIME value;
-    hr = pTargetProcess->ReadMemory(pPointerValueHome->Address(), DkmReadMemoryFlags::None, &value, sizeof(value), nullptr);
+    Symbol2 sym;
+    hr = pTargetProcess->ReadMemory(pPointerValueHome->Address(), DkmReadMemoryFlags::None, &sym.symNum, sizeof(sym.symNum), nullptr);
     if (FAILED(hr))
     {
         // If the bytes of the value cannot be read from the target process, just fall back to the default visualization
         return E_NOTIMPL;
     }
+    std::string symStr = sym.toString();
 
-    // Format this FILETIME as a string
-    CString strValue;
-    hr = FileTimeToText(value, /*ref*/strValue);
-    if (FAILED(hr))
-    {
-        strValue = "<Invalid Value>";
-    }
+    CString strValue(symStr.c_str());
 
     CString strEditableValue;
 
@@ -96,7 +92,7 @@ HRESULT STDMETHODCALLTYPE CBacktestEngineCustomVisualizerService::EvaluateVisual
     DkmEvaluationResultFlags_t resultFlags = DkmEvaluationResultFlags::Expandable;
     if (strEditableValue.IsEmpty())
     {
-        // We only allow editting pointers, so mark non-pointers as read-only
+        // We only allow editing pointers, so mark non-pointers as read-only
         resultFlags |= DkmEvaluationResultFlags::ReadOnly;
     }
 
@@ -283,98 +279,4 @@ HRESULT STDMETHODCALLTYPE CBacktestEngineCustomVisualizerService::GetUnderlyingS
     // FILETIME doesn't have an underlying string (no DkmEvaluationResultFlags::RawString), so this method
     // doesn't need to be implemented
     return E_NOTIMPL;
-}
-
-HRESULT CBacktestEngineCustomVisualizerService::FileTimeToText(const FILETIME& fileTime, CString& text)
-{
-    text.Empty();
-
-    SYSTEMTIME systemTime;
-    if (!FileTimeToSystemTime(&fileTime, &systemTime))
-    {
-        return WIN32_LAST_ERROR();
-    }
-
-    int cch;
-
-    // Deterime how much to allocate for the date
-    cch = GetDateFormatW(
-        GetThreadLocale(),
-        DATE_SHORTDATE,
-        &systemTime,
-        nullptr,
-        nullptr,
-        0
-        );
-    if (cch == 0)
-    {
-        return WIN32_LAST_ERROR();
-    }
-
-    int allocLength = cch
-        - 1 // To convert from a character count (including null terminator) to a length
-        + 1; // For the space (' ') character between the date and time
-
-    // Deterime how much to allocate for the time
-    cch = GetTimeFormatW(
-        GetThreadLocale(),
-        /*flags*/0,
-        &systemTime,
-        nullptr,
-        nullptr,
-        0
-        );
-    if (cch == 0)
-    {
-        return WIN32_LAST_ERROR();
-    }
-
-    allocLength += (cch - 1); // '-1' is to convert from a character count (including null terminator) to a length
-    CString result;
-    LPWSTR pBuffer = result.GetBuffer(allocLength);
-
-    // Add the date
-    cch = GetDateFormatW(
-        GetThreadLocale(),
-        DATE_SHORTDATE,
-        &systemTime,
-        nullptr,
-        pBuffer,
-        allocLength+1
-        );
-    if (cch == 0)
-    {
-        return WIN32_LAST_ERROR();
-    }
-
-    pBuffer += (cch-1); // '-1' is to convert from a character count (including null terminator) to a length
-    int remainaingLength = allocLength - (cch-1);
-
-    // Add a space between the date and the time
-    if (remainaingLength <= 1)
-    {
-        return HRESULT_FROM_WIN32(ERROR_INSUFFICIENT_BUFFER);
-    }
-    *pBuffer = ' ';
-    pBuffer++;
-    remainaingLength--;
-
-    // Add the time
-    cch = GetTimeFormatW(
-        GetThreadLocale(),
-        /*flags*/0,
-        &systemTime,
-        nullptr,
-        pBuffer,
-        remainaingLength + 1 // '+1' is for null terminator
-        );
-    if (cch == 0)
-    {
-        return WIN32_LAST_ERROR();
-    }
-
-    result.ReleaseBuffer();
-    text = result;
-
-    return S_OK;
 }
