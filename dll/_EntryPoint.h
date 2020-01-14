@@ -3,15 +3,15 @@
 
 #pragma once
 
-// This file defines the CCppCustomVisualizerService class, which is the one and only
+// This file defines the CBacktestEngineCustomVisualizerService class, which is the one and only
 // COM object exported from the sample dll.
 
-#include "CppCustomVisualizer.Contract.h"
+#include "BacktestEngineCustomVisualizer.Contract.h"
 
-class ATL_NO_VTABLE CCppCustomVisualizerService :
-    // Inherit from CCppCustomVisualizerServiceContract to provide the list of interfaces that
-    // this class implements (interface list comes from CppCustomVisualizer.vsdconfigxml)
-    public CCppCustomVisualizerServiceContract,
+class ATL_NO_VTABLE CBacktestEngineCustomVisualizerService :
+    // Inherit from CBacktestEngineCustomVisualizerServiceContract to provide the list of interfaces that
+    // this class implements (interface list comes from BacktestEngineCustomVisualizer.vsdconfigxml)
+    public CBacktestEngineCustomVisualizerServiceContract,
 
     // Inherit from CComObjectRootEx to provide ATL support for reference counting and
     // object creation.
@@ -19,19 +19,19 @@ class ATL_NO_VTABLE CCppCustomVisualizerService :
 
     // Inherit from CComCoClass to provide ATL support for exporting this class from
     // DllGetClassObject
-    public CComCoClass<CCppCustomVisualizerService, &CCppCustomVisualizerServiceContract::ClassId>
+    public CComCoClass<CBacktestEngineCustomVisualizerService, &CBacktestEngineCustomVisualizerServiceContract::ClassId>
 {
 protected:
-    CCppCustomVisualizerService()
+    CBacktestEngineCustomVisualizerService()
     {
     }
-    ~CCppCustomVisualizerService()
+    ~CBacktestEngineCustomVisualizerService()
     {
     }
 
 public:
     DECLARE_NO_REGISTRY();
-    DECLARE_NOT_AGGREGATABLE(CCppCustomVisualizerService);
+    DECLARE_NOT_AGGREGATABLE(CBacktestEngineCustomVisualizerService);
 
 // IDkmCustomVisualizer methods
 public:
@@ -73,4 +73,4 @@ private:
     static HRESULT FileTimeToText(const FILETIME& fileTime, CString& text);
 };
 
-OBJECT_ENTRY_AUTO(CCppCustomVisualizerService::ClassId, CCppCustomVisualizerService)
+OBJECT_ENTRY_AUTO(CBacktestEngineCustomVisualizerService::ClassId, CBacktestEngineCustomVisualizerService)

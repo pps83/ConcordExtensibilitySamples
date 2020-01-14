@@ -5,7 +5,7 @@
 #include "resource.h"
 #include "dllmain.h"
 
-CCppCustomVisualizerModule _AtlModule;
+CBacktestEngineCustomVisualizerModule _AtlModule;
 
 // DLL Entry Point
 extern "C" BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
