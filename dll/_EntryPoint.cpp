@@ -43,6 +43,19 @@ HRESULT STDMETHODCALLTYPE CBacktestEngineCustomVisualizerService::EvaluateVisual
         return E_NOTIMPL;
     }
     std::string symStr = sym.toString();
+    if (symStr.empty())
+        symStr = "???";
+    else
+    {
+        for (size_t i = 0; i < symStr.size(); ++i)
+        {
+            if (symStr[i] < '.' || symStr[i] > 'Z')
+            {
+                symStr = "???";
+                break;
+            }
+        }
+    }
 
     CString strValue(symStr.c_str());
 
