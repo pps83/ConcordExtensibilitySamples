@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <windows.h>
+#include "../../../process-iex-data/symbol.h"
 
 class MyClass
 {
@@ -21,6 +22,9 @@ public:
 
 int wmain(int argc, WCHAR* argv[])
 {
+    Symbol2 sym2_spy("spy");
+    Symbol2 sym2_unknown;
+
     FILETIME creationTime;
     HANDLE hFile = CreateFile(argv[0], GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, nullptr, OPEN_EXISTING, 0, nullptr);
     if (hFile == INVALID_HANDLE_VALUE)

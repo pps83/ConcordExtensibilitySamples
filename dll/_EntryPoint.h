@@ -70,7 +70,7 @@ public:
         );
 
 private:
-    static HRESULT FileTimeToText(const FILETIME& fileTime, CString& text);
+    //static HRESULT FileTimeToText(const FILETIME& fileTime, CString& text);
 };
 
 OBJECT_ENTRY_AUTO(CBacktestEngineCustomVisualizerService::ClassId, CBacktestEngineCustomVisualizerService)
