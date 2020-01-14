@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F7062FB7-42BB-4FEF-8E9B-2F65FFC7EAFA}</ProjectGuid>
-    <RootNamespace>CppCustomVisualizer</RootNamespace>
+    <RootNamespace>BacktestEngineCustomVisualizer</RootNamespace>
     <Keyword>AtlProj</Keyword>
     <CharacterSet>Unicode</CharacterSet>
     <NugetPackagesDirectory>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\packages\))</NugetPackagesDirectory>
@@ -93,7 +93,7 @@
     </ResourceCompile>
     <Link>
       <RegisterOutput>false</RegisterOutput>
-      <ModuleDefinitionFile>.\CppCustomVisualizer.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>.\BacktestEngineCustomVisualizer.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
@@ -118,7 +118,7 @@
     </ResourceCompile>
     <Link>
       <RegisterOutput>false</RegisterOutput>
-      <ModuleDefinitionFile>.\CppCustomVisualizer.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>.\BacktestEngineCustomVisualizer.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
@@ -141,7 +141,7 @@
     </ResourceCompile>
     <Link>
       <RegisterOutput>false</RegisterOutput>
-      <ModuleDefinitionFile>.\CppCustomVisualizer.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>.\BacktestEngineCustomVisualizer.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -166,7 +166,7 @@
     </ResourceCompile>
     <Link>
       <RegisterOutput>false</RegisterOutput>
-      <ModuleDefinitionFile>.\CppCustomVisualizer.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>.\BacktestEngineCustomVisualizer.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -182,8 +182,8 @@
     <ClCompile Include="_EntryPoint.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="CppCustomVisualizer.def" />
-    <None Include="CppCustomVisualizer.vsdconfigxml" />
+    <None Include="BacktestEngineCustomVisualizer.def" />
+    <None Include="BacktestEngineCustomVisualizer.vsdconfigxml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -198,11 +198,11 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="$(IntDir)CppCustomVisualizer.Contract.h" />
+    <ClInclude Include="$(IntDir)BacktestEngineCustomVisualizer.Contract.h" />
     <ClInclude Include="_EntryPoint.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="CppCustomVisualizer.rc" />
+    <ResourceCompile Include="BacktestEngineCustomVisualizer.rc" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(NugetPackagesDirectory)Microsoft.VSSDK.Debugger.VSDConfigTool.$(ConcordPackageVersion)\content\vsdconfig.xsd">
@@ -210,10 +210,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <VsdConfigXmlFiles Include="CppCustomVisualizer.vsdconfigxml" />
+    <VsdConfigXmlFiles Include="BacktestEngineCustomVisualizer.vsdconfigxml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="CppCustomVisualizer.natvis" />
+    <None Include="BacktestEngineCustomVisualizer.natvis" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
