@@ -1,0 +1,10 @@
+{
+  "FileVersion": 2,
+  "Id": "0e22d156-940b-431d-945d-51b7dfa08aef",
+  "Items": [
+    {
+      "Id": "b64a0240-0213-4e9c-af9e-3a6ce96330b1",
+      "Command": "/rootsuffix Exp $(SolutionDir)TargetApp.sln"
+    }
+  ]
+}
