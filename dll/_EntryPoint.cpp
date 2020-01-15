@@ -42,22 +42,24 @@ HRESULT STDMETHODCALLTYPE CBacktestEngineCustomVisualizerService::EvaluateVisual
         // If the bytes of the value cannot be read from the target process, just fall back to the default visualization
         return E_NOTIMPL;
     }
-    std::string symStr = sym.toString();
-    if (symStr.empty())
-        symStr = "???";
+    char symStr[7];
+    sym.toString(symStr);
+    int len = strlen(symStr);
+    if (len == 0)
+        strcpy(symStr, "???");
     else
     {
-        for (size_t i = 0; i < symStr.size(); ++i)
+        for (int i = 0; i < len; ++i)
         {
             if (symStr[i] < '.' || symStr[i] > 'Z')
             {
-                symStr = "???";
+                strcpy(symStr, "???");
                 break;
             }
         }
     }
 
-    CString strValue(symStr.c_str());
+    CString strValue(symStr);
 
     CString strEditableValue;
 
