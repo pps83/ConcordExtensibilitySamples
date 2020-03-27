@@ -23,6 +23,7 @@ public:
 int wmain(int argc, WCHAR* argv[])
 {
     Symbol2 sym2_spy("spy");
+    Symbol2 sym2_nylda("NYLD.A");
     Symbol2 sym2_unknown;
 
     FILETIME creationTime;

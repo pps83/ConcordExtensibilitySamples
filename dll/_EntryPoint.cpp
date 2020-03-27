@@ -42,7 +42,7 @@ HRESULT STDMETHODCALLTYPE CBacktestEngineCustomVisualizerService::EvaluateVisual
         // If the bytes of the value cannot be read from the target process, just fall back to the default visualization
         return E_NOTIMPL;
     }
-    char symStr[6];
+    char symStr[7];
     sym.toString(symStr);
     int len = strlen(symStr);
     if (len == 0)
