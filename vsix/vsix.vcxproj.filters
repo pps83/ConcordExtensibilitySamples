@@ -17,6 +17,5 @@
   <ItemGroup>
     <None Include="source.extension.vsixmanifest" />
     <None Include="VSIXSourceItems.props" />
-    <None Include="Build-x64.targets" />
   </ItemGroup>
 </Project>
