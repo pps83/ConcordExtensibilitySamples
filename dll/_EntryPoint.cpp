@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-// _CppCustomVisualizerService.cpp : Implementation of CCppCustomVisualizerService
+// _BacktestEngineCustomVisualizerService.cpp : Implementation of CBacktestEngineCustomVisualizerService
 
 #include "stdafx.h"
 #include "_EntryPoint.h"
 
-HRESULT STDMETHODCALLTYPE CCppCustomVisualizerService::EvaluateVisualizedExpression(
+HRESULT STDMETHODCALLTYPE CBacktestEngineCustomVisualizerService::EvaluateVisualizedExpression(
     _In_ Evaluation::DkmVisualizedExpression* pVisualizedExpression,
     _Deref_out_opt_ Evaluation::DkmEvaluationResult** ppResultObject
     )
@@ -134,7 +134,7 @@ HRESULT STDMETHODCALLTYPE CCppCustomVisualizerService::EvaluateVisualizedExpress
     return S_OK;
 }
 
-HRESULT STDMETHODCALLTYPE CCppCustomVisualizerService::UseDefaultEvaluationBehavior(
+HRESULT STDMETHODCALLTYPE CBacktestEngineCustomVisualizerService::UseDefaultEvaluationBehavior(
     _In_ Evaluation::DkmVisualizedExpression* pVisualizedExpression,
     _Out_ bool* pUseDefaultEvaluationBehavior,
     _Deref_out_opt_ Evaluation::DkmEvaluationResult** ppDefaultEvaluationResult
@@ -240,7 +240,7 @@ HRESULT STDMETHODCALLTYPE CCppCustomVisualizerService::UseDefaultEvaluationBehav
     return S_OK;
 }
 
-HRESULT STDMETHODCALLTYPE CCppCustomVisualizerService::GetChildren(
+HRESULT STDMETHODCALLTYPE CBacktestEngineCustomVisualizerService::GetChildren(
     _In_ Evaluation::DkmVisualizedExpression* pVisualizedExpression,
     _In_ UINT32 InitialRequestSize,
     _In_ Evaluation::DkmInspectionContext* pInspectionContext,
@@ -252,7 +252,7 @@ HRESULT STDMETHODCALLTYPE CCppCustomVisualizerService::GetChildren(
     return E_NOTIMPL;
 }
 
-HRESULT STDMETHODCALLTYPE CCppCustomVisualizerService::GetItems(
+HRESULT STDMETHODCALLTYPE CBacktestEngineCustomVisualizerService::GetItems(
     _In_ Evaluation::DkmVisualizedExpression* pVisualizedExpression,
     _In_ Evaluation::DkmEvaluationResultEnumContext* pEnumContext,
     _In_ UINT32 StartIndex,
@@ -264,7 +264,7 @@ HRESULT STDMETHODCALLTYPE CCppCustomVisualizerService::GetItems(
     return E_NOTIMPL;
 }
 
-HRESULT STDMETHODCALLTYPE CCppCustomVisualizerService::SetValueAsString(
+HRESULT STDMETHODCALLTYPE CBacktestEngineCustomVisualizerService::SetValueAsString(
     _In_ Evaluation::DkmVisualizedExpression* pVisualizedExpression,
     _In_ DkmString* pValue,
     _In_ UINT32 Timeout,
@@ -275,7 +275,7 @@ HRESULT STDMETHODCALLTYPE CCppCustomVisualizerService::SetValueAsString(
     return E_NOTIMPL;
 }
 
-HRESULT STDMETHODCALLTYPE CCppCustomVisualizerService::GetUnderlyingString(
+HRESULT STDMETHODCALLTYPE CBacktestEngineCustomVisualizerService::GetUnderlyingString(
     _In_ Evaluation::DkmVisualizedExpression* pVisualizedExpression,
     _Deref_out_opt_ DkmString** ppStringValue
     )
@@ -285,7 +285,7 @@ HRESULT STDMETHODCALLTYPE CCppCustomVisualizerService::GetUnderlyingString(
     return E_NOTIMPL;
 }
 
-HRESULT CCppCustomVisualizerService::FileTimeToText(const FILETIME& fileTime, CString& text)
+HRESULT CBacktestEngineCustomVisualizerService::FileTimeToText(const FILETIME& fileTime, CString& text)
 {
     text.Empty();
 

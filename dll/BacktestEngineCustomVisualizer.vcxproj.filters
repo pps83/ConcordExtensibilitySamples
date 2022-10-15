@@ -33,15 +33,15 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="CppCustomVisualizer.def">
+    <None Include="BacktestEngineCustomVisualizer.def">
       <Filter>Source Files</Filter>
     </None>
     <None Include="packages.config" />
     <None Include="packages.version.props" />
-    <None Include="CppCustomVisualizer.vsdconfigxml">
+    <None Include="BacktestEngineCustomVisualizer.vsdconfigxml">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="CppCustomVisualizer.natvis">
+    <None Include="BacktestEngineCustomVisualizer.natvis">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
@@ -58,7 +58,7 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="$(IntDir)CppCustomVisualizer.Contract.h">
+    <ClInclude Include="$(IntDir)BacktestEngineCustomVisualizer.Contract.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="$(NugetPackagesDirectory)Microsoft.VSSDK.Debugger.VSDebugEng.$(ConcordPackageVersion)\build\native\inc\VSDebugEng.h">
@@ -72,7 +72,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="CppCustomVisualizer.rc">
+    <ResourceCompile Include="BacktestEngineCustomVisualizer.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>

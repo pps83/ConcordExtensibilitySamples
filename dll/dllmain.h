@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-class CCppCustomVisualizerModule : public CAtlDllModuleT< CCppCustomVisualizerModule >
+class CBacktestEngineCustomVisualizerModule : public CAtlDllModuleT< CBacktestEngineCustomVisualizerModule >
 {
 };
 
-extern class CCppCustomVisualizerModule _AtlModule;
+extern class CBacktestEngineCustomVisualizerModule _AtlModule;
