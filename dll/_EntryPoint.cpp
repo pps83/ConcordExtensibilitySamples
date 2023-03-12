@@ -34,16 +34,48 @@ HRESULT STDMETHODCALLTYPE CBacktestEngineCustomVisualizerService::EvaluateVisual
     }
 
     // Read the FILETIME value from the target process
+    bool isSymbol0 = false;
+    bool isSymbol1 = false;
+    bool isSymbol2 = false;
+
+    if (pRootVisualizedExpression->Type() && pRootVisualizedExpression->Type()->Value())
+    {
+        CString type(pRootVisualizedExpression->Type()->Value());
+        if (type.Find(L"Symbol0") != -1)
+            isSymbol0 = true;
+        else if (type.Find(L"Symbol1") != -1)
+            isSymbol1 = true;
+        else if (type.Find(L"Symbol2") != -1)
+            isSymbol2 = true;
+    }
+    else
+        isSymbol2 = true;
+
     DkmProcess* pTargetProcess = pVisualizedExpression->RuntimeInstance()->Process();
-    Symbol2 sym;
-    hr = pTargetProcess->ReadMemory(pPointerValueHome->Address(), DkmReadMemoryFlags::None, &sym.symNum, sizeof(sym.symNum), nullptr);
+    Symbol0 sym0;
+    Symbol1 sym1;
+    Symbol2 sym2;
+    if (isSymbol0)
+        hr = pTargetProcess->ReadMemory(pPointerValueHome->Address(), DkmReadMemoryFlags::None, &sym0.symNum, sizeof(sym0.symNum), nullptr);
+    else if (isSymbol1)
+        hr = pTargetProcess->ReadMemory(pPointerValueHome->Address(), DkmReadMemoryFlags::None, &sym1.symNum, sizeof(sym1.symNum), nullptr);
+    else if (isSymbol2)
+        hr = pTargetProcess->ReadMemory(pPointerValueHome->Address(), DkmReadMemoryFlags::None, &sym2.symNum, sizeof(sym2.symNum), nullptr);
     if (FAILED(hr))
     {
         // If the bytes of the value cannot be read from the target process, just fall back to the default visualization
         return E_NOTIMPL;
     }
-    char symStr[7];
-    sym.toString(symStr);
+
+    char symStr[32] = {};
+
+    if (isSymbol0)
+        sym0.toStringImpl(symStr);
+    else if (isSymbol1)
+        sym1.toStringImpl(symStr);
+    else if (isSymbol2)
+        sym2.toStringImpl(symStr);
+
     int len = strlen(symStr);
     if (len == 0)
         strcpy(symStr, "???");
@@ -58,7 +90,7 @@ HRESULT STDMETHODCALLTYPE CBacktestEngineCustomVisualizerService::EvaluateVisual
             }
         }
     }
-
+    
     CString strValue(symStr);
 
     CString strEditableValue;
